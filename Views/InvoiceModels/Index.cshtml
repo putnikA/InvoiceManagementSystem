@@ -1,0 +1,82 @@
+﻿@model IEnumerable<InvoiceManagementWebApp.Models.InvoiceModel>
+
+@{
+    ViewData["Title"] = "All Invoices";
+}
+
+<h1>List of all Invoices</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="InvoiceModels" asp-action="Index" method="get">
+    <p>
+        Supplier name: <input type="text" name="searchString" />
+        Payment Deadline: <input type="date" name="paymentDeadline" />
+        <input type="submit" value="Filter" />
+        <a asp-controller="InvoiceModels" asp-action="Index" class="btn btn-secondary">Clear Filters</a>
+    </p>
+</form>
+<a asp-controller="InvoiceModels" asp-action="PaidInvoices" class="bigger-link">Paid Invoices</a>
+
+
+<table class="table">
+    <thead>
+        <tr class="text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.SelectedSupplier.SupplierName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentDeadline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReferenceNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @if (!item.IsPaid)
+            {
+                <tr class="text-center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SelectedSupplier.SupplierName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InvoiceNum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaymentDeadline)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeliveryDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReferenceNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                        <a asp-action="Paid" asp-route-id="@item.Id">Paid</a>
+                    </td>
+                </tr>
+                }
+            }
+    </tbody>
+</table>

@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to invoice management system</h1>
+    <a asp-controller="InvoiceModels" asp-action="Create" class="bigger-link">New Invoice</a><br />
+    <a asp-controller="InvoiceModels" asp-action="Index" class="bigger-link">List of Invoices</a><br />
+    <a asp-controller="SupplierModels" asp-action="Create" class="bigger-link">New Supplier</a><br />
+    <a asp-controller="SupplierModels" asp-action="Index" class="bigger-link">List of Suppliers</a><br />
+    <a asp-controller="InvoiceModels" asp-action="PaidInvoices" class="bigger-link">Paid Invoices</a>
+</div>

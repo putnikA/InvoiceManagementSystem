@@ -1,0 +1,54 @@
+﻿@model IEnumerable<InvoiceManagementWebApp.Models.InvoiceModel>
+
+@{ ViewData["Title"] = "Paid Invoices"; }
+
+<h1>Paid Invoices</h1>
+
+<table class="table">
+    <thead>
+        <tr class="text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.SelectedSupplier.SupplierName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentDeadline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReferenceNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(i => i.IsPaid))
+        {
+<tr class="text-center">
+    <td>
+        @Html.DisplayFor(modelItem => item.SelectedSupplier.SupplierName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.InvoiceNum)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PaymentDeadline)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DeliveryDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ReferenceNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Amount)
+    </td>
+</tr>}
+    </tbody>
+</table>
